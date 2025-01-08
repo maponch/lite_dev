@@ -36,7 +36,9 @@ class BuildingFixtures extends Fixture implements DependentFixtureInterface
                     ->setNumberOfLot(rand(4,12))
                     ->setPostalCode(rand(1000, 9999))
                     ->setSupplier($randSupplier->getId())
-                    ->setAdministrator($randAdmin->getId());
+                    ->setAdministrator($randAdmin->getId())
+                    ->addSupplierId($faker->randomElement($supplier))
+                    ->addAdministator($faker->randomElement($admin));
 
             $manager->persist($building);
         }

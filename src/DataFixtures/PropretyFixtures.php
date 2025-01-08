@@ -18,6 +18,7 @@ class PropretyFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
+        $faker = Factory::create();
         $buildings = $manager->getRepository(Building::class)->findAll();
         $type = $manager->getRepository(Type::class)->findOneBy([
             "name" => 'apartment'
@@ -29,7 +30,8 @@ class PropretyFixtures extends Fixture implements DependentFixtureInterface
                 $randomOccupation = $this->occupation[array_rand($this->occupation)];
                 $proprety->setTenant($randomOccupation)
                     ->setType($type)
-                    ->setAddress($building->getAddress());
+                    ->setAddress($building->getAddress())
+                    ->addUsername($faker->randomElement($users));
                 $manager->persist($proprety);
 
             }
@@ -40,7 +42,8 @@ class PropretyFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             BuildingFixtures::class,
-            TypeFixtures::class
+            TypeFixtures::class,
+            UserFixtures::class,
         ];
     }
 }
