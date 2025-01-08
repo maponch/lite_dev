@@ -34,10 +34,10 @@ class Building
     private ?int $number_of_lot = null;
 
     #[ORM\Column]
-    private ?int $administrator = null;
+    private ?string $administrator = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $supplier = null;
+    private ?string $supplier = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $note = null;
@@ -144,24 +144,24 @@ class Building
         return $this;
     }
 
-    public function getAdministrator(): ?int
+    public function getAdministrator(): ?string
     {
         return $this->administrator;
     }
 
-    public function setAdministrator(int $administrator): static
+    public function setAdministrator(string $administrator): static
     {
         $this->administrator = $administrator;
 
         return $this;
     }
 
-    public function getSupplier(): ?int
+    public function getSupplier(): ?string
     {
         return $this->supplier;
     }
 
-    public function setSupplier(?int $supplier): static
+    public function setSupplier(?string $supplier): self
     {
         $this->supplier = $supplier;
 

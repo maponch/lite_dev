@@ -6,6 +6,7 @@ use App\Repository\SupplierRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\String_;
 
 #[ORM\Entity(repositoryClass: SupplierRepository::class)]
 class Supplier
@@ -22,10 +23,10 @@ class Supplier
     private ?string $mail = null;
 
     #[ORM\Column]
-    private ?int $phone = null;
+    private ?string $phone = null;
 
     #[ORM\Column]
-    private ?int $TVA = null;
+    private ?string $TVA = null;
 
     #[ORM\Column(length: 255)]
     private ?string $address = null;
@@ -77,24 +78,24 @@ class Supplier
         return $this;
     }
 
-    public function getPhone(): ?int
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    public function setPhone(int $phone): static
+    public function setPhone(string $phone): static
     {
         $this->phone = $phone;
 
         return $this;
     }
 
-    public function getTVA(): ?int
+    public function getTVA(): ?string
     {
         return $this->TVA;
     }
 
-    public function setTVA(int $TVA): static
+    public function setTVA(String $TVA): static
     {
         $this->TVA = $TVA;
 

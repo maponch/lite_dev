@@ -17,11 +17,8 @@ class Proprety
     private ?int $id = null;
 
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $tenant = [];
-
-    #[ORM\Column]
-    private ?int $id_type = null;
+    #[ORM\Column(length: 255)]
+    private ?string $tenant = null;
 
     #[ORM\Column(length: 255)]
     private ?string $address = null;
@@ -41,32 +38,21 @@ class Proprety
         $this->username = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId():
+    ?int
     {
         return $this->id;
     }
 
 
-    public function getTenant(): array
+    public function getTenant(): ?string
     {
         return $this->tenant;
     }
 
-    public function setTenant(array $tenant): static
+    public function setTenant(string $tenant): static
     {
         $this->tenant = $tenant;
-
-        return $this;
-    }
-
-    public function getIdType(): ?int
-    {
-        return $this->id_type;
-    }
-
-    public function setIdType(int $id_type): static
-    {
-        $this->id_type = $id_type;
 
         return $this;
     }

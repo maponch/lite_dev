@@ -8,8 +8,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,10 +34,10 @@ class User
     private ?string $adress = null;
 
     #[ORM\Column]
-    private ?int $phone = null;
+    private ?string $phone = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $role = [];
+    #[ORM\Column(type: 'json')]
+    private $role = [];
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -129,24 +131,24 @@ class User
         return $this;
     }
 
-    public function getPhone(): ?int
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    public function setPhone(int $phone): static
+    public function setPhone(string $phone): static
     {
         $this->phone = $phone;
 
         return $this;
     }
 
-    public function getRole(): array
+    public function getRole(): string
     {
         return $this->role;
     }
 
-    public function setRole(array $role): static
+    public function setRole(string $role): static
     {
         $this->role = $role;
 
